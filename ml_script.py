@@ -11,9 +11,6 @@ import sklearn
 plt.rcParams['figure.figsize'] = [12, 8]
 
 
-plt.rcParams['figure.figsize'] = [12, 8]
-
-
 os.chdir("/rds/general/project/hda-22-23/live/TDS/ek2018") # set wd
 data = pyreadr.read_r('../ek2018/ML/final_data2.rds') # import data
 print(data.keys())
@@ -43,16 +40,14 @@ data_encoded['incident_case'] = last_column
 data_encoded['incident_case'] = data_encoded['incident_case'].astype(int)
 
 
-# train and test split
-
+# train and test split (80:20)
 X = data_encoded.drop(columns=['incident_case'])
 Y = data_encoded['incident_case']
 
 from sklearn.model_selection import train_test_split
 
 X_train, X_test, y_train, y_test = train_test_split(
-    X, Y, test_size=0.2, random_state=42
-)
+    X, Y, test_size=0.2, random_state=42)
 
 
 
